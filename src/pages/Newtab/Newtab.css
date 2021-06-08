@@ -1,3 +1,4 @@
+@import url("https://use.typekit.net/fvd7lzk.css");
 h1,
 h2,
 h3,
@@ -5,5 +6,242 @@ h4,
 h5,
 h6 {
   color: red;
+}
+
+.sub-title {
+  color: #f25e24;
+  font-family: acier-bat-solid,sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+}
+
+.App {
+  background-color: #333;
+}
+
+.App .App-header .MuiAppBar-colorPrimary {
+  background-color: #373737;
+  height: 7vh;
+}
+
+.App .App-header .App-logo {
+  width: 40px;
+}
+
+.App .newTabContent {
+  width: 100%;
+  height: 110vh;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50% 50%;
+      grid-template-columns: 50% 50%;
+  -ms-grid-rows: 30% 15% 55%;
+      grid-template-rows: 30% 15% 55%;
+      grid-template-areas: "next resources" "progressComp progressComp" "schedule schedule";
+}
+
+.App .newTabContent #nextComp {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: next;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.App .newTabContent #nextComp .MuiPaper-root {
+  height: 80%;
+}
+
+.App .newTabContent #nextComp .MuiPaper-root ol {
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.App .newTabContent #nextComp .MuiPaper-root ol li {
+  margin: 10px 0;
+}
+
+.App .newTabContent #resourcesComp {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: resources;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.App .newTabContent #resourcesComp .MuiPaper-root {
+  height: 80%;
+}
+
+.App .newTabContent #resourcesComp .description {
+  height: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.App .newTabContent #resourcesComp .description .bttn {
+  color: white;
+  text-align: center;
+}
+
+.App .newTabContent #progressComp {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: progressComp;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: visible;
+}
+
+.App .newTabContent #progressComp #messagePopup {
+  background-color: #3e7ef5;
+  padding: 0px 15px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 200px;
+}
+
+.App .newTabContent #progressComp #messagePopup p {
+  text-align: center;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.App .newTabContent #progressComp #messagePopup #triangle {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 15px 15px 0 15px;
+  border-color: #3e7ef5 transparent transparent transparent;
+  position: absolute;
+  margin-top: 70px;
+}
+
+.App .newTabContent #progressComp .MuiLinearProgress-root {
+  width: 90vw;
+  height: 30px;
+  border-radius: 30px;
+  background-color: #facbb8;
+}
+
+.App .newTabContent #progressComp .MuiLinearProgress-root .MuiLinearProgress-bar {
+  border-radius: 30px;
+}
+
+.App .newTabContent #scheduleComp {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: schedule;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.App .newTabContent #scheduleComp .MuiPaper-root {
+  background-color: #424242;
+}
+
+.App .newTabContent #scheduleComp .makeStyles-background-35 {
+  background-color: #2c2c2c;
+}
+
+.App .newTabContent #scheduleComp .makeStyles-background-36 {
+  background-color: #2c2c2c;
+}
+
+.App .newTabContent #scheduleComp .makeStyles-stickyElement-24 {
+  background-color: #444;
+}
+
+.App .newTabContent #scheduleComp .Cell-highlightedText-47 {
+  color: #f25e24 !important;
+}
+
+.App .newTabContent #scheduleComp .Cell-dayOfMonth-46 {
+  color: #facbb8;
+}
+
+.App .newTabContent #scheduleComp .Cell-dayOfWeek-45 {
+  color: #facbb8;
+}
+
+.App .newTabContent #scheduleComp .Label-text-57 {
+  color: #facbb8;
+}
+
+.App .newTabContent #scheduleComp .makeStyles-ordinaryLeftPanelBorder-27 {
+  border-right: 1px solid #5f5f5f;
+}
+
+.App .newTabContent #scheduleComp .makeStyles-background-35 {
+  border-bottom: 1px solid #5f5f5f !important;
+}
+
+.App .newTabContent #scheduleComp .MuiTableCell-root {
+  border-bottom: 1px solid #5f5f5f;
+}
+
+.App .newTabContent #scheduleComp .makeStyles-cell-68 {
+  border-right: 1px solid #5f5f5f;
 }
 /*# sourceMappingURL=Newtab.css.map */

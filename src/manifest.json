@@ -8,9 +8,6 @@
     "default_popup": "popup.html",
     "default_icon": "icon-34.png"
   },
-  "chrome_url_overrides": {
-    "newtab": "newtab.html"
-  },
   "icons": {
     "128": "icon-128.png"
   },
@@ -27,8 +24,20 @@
     "P.png",
     "E.png",
     "R.png",
-    "C.png"
+    "C.png",
+    "PelotonU.png"
   ],
   "manifest_version": 2,
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "permissions": ["tabs",
+    "declarativeContent",
+    "storage",
+    "activeTab",
+    "*://*.utdirect.utexas.edu/apps/registrar/course_schedule/*",
+    "*://*.utexas.collegescheduler.com/*",
+    "*://*.catalog.utexas.edu/ribbit/",
+    "*://*.registrar.utexas.edu/schedules/*",
+    "*://*.login.utexas.edu/login/*",
+    "*://enterprise.login.utexas.edu/*"
+    ]
 }

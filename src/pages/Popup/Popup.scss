@@ -1,3 +1,4 @@
+$bckgrnd: #373b44;
 $black: #282c34;
 $darkBlack: #030303;
 $orange: #CC5500;
@@ -6,8 +7,8 @@ $darkOrange: #491f01;
 $green: #2E8B57;
 $lightGreen: #369e63;
 $darkGreen: #153d27;
-$blue: #2171a3;
-$lightBlue: #2c85bd;
+$blue: rgb(62, 126, 245);
+$lightBlue: rgb(91, 141, 235);
 $darkBlue: #0c2d41;
 @import url("https://use.typekit.net/fvd7lzk.css");
 
@@ -31,7 +32,7 @@ $darkBlue: #0c2d41;
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: $bckgrnd;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -60,10 +61,11 @@ $darkBlue: #0c2d41;
     }
     button:hover{
       cursor: pointer;
-      box-shadow: $darkBlack 0px 15px 16px 0px;
+      box-shadow: $darkBlack 0px 6px 16px 0px;
       transform: translateY(-2px);
     }
     button:focus{
+      box-shadow: $darkBlack 0px 1px 16px 0px;
       outline: none;
     }
     .schedule-bttn{

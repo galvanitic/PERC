@@ -27,7 +27,21 @@ const Content: React.FunctionComponent<IContentProps> = (props) => {
       setIndex(newActiveIndex);
     }, 150);
   }
+
+  let logIt:any = () =>{
+    // chrome.browserAction.onClicked.addListener(()=>console.log('Uhhh, hi...'));
+    window.open("newtab.html", "_blank");
+  }
   
+  let openSite:any = () =>{
+    // chrome.browserAction.onClicked.addListener(()=>console.log('Uhhh, hi...'));
+    window.open("https://utdirect.utexas.edu/apps/registrar/course_schedule/20212", "_blank");
+  }
+  let scrape:any = () => {
+    chrome.runtime.sendMessage({message: "changeColor"}, response => {
+      console.log(response);
+    });
+  }
   React.useEffect(()=>{
     bootSequence();
   },[index, loaderState, loaderState2,  bootSequence]);
@@ -36,9 +50,9 @@ const Content: React.FunctionComponent<IContentProps> = (props) => {
     //Show buttons
     return(
       <div className="popup-actions">
-        <button className="schedule-bttn">MY SCHEDULE</button>
+        <button onClick={logIt} className="schedule-bttn">MY SCHEDULE</button>
         <button className="degree-bttn">MY DEGREE</button>
-        <button className="resources-bttn">RESOURCES</button>
+        <button className="resources-bttn" onClick={openSite}>SCRAPE</button>
       </div>
     )
   }else if(!loaderState && loaderState2){

@@ -15,7 +15,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #373b44;
   min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -62,13 +62,15 @@
 
 .App-header .popup-actions button:hover {
   cursor: pointer;
-  -webkit-box-shadow: #030303 0px 15px 16px 0px;
-          box-shadow: #030303 0px 15px 16px 0px;
+  -webkit-box-shadow: #030303 0px 6px 16px 0px;
+          box-shadow: #030303 0px 6px 16px 0px;
   -webkit-transform: translateY(-2px);
           transform: translateY(-2px);
 }
 
 .App-header .popup-actions button:focus {
+  -webkit-box-shadow: #030303 0px 1px 16px 0px;
+          box-shadow: #030303 0px 1px 16px 0px;
   outline: none;
 }
 
@@ -100,15 +102,15 @@
 
 .App-header .popup-actions .resources-bttn {
   color: #0c2d41;
-  background-color: #2171a3;
+  background-color: #3e7ef5;
 }
 
 .App-header .popup-actions .resources-bttn:hover {
-  background-color: #2c85bd;
+  background-color: #5b8deb;
 }
 
 .App-header .popup-actions .resources-bttn:focus {
-  background-color: #2c85bd;
+  background-color: #5b8deb;
 }
 
 .App-link {
