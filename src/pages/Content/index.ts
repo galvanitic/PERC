@@ -10,26 +10,9 @@ const extensionID = "gbdolgkeknipmllaoppeagkgnpminapk";
 const un:string = "rjg3268";
 const pw:string = "V464!uM3S"
 const levels:Array<string> = ['L', 'U', 'G'];
-var isSecondDegreeScrapeComplete:boolean = false;
 let ccyys:string = `20212`;
 let search_type_main:string = `FIELD`
-var port = chrome.runtime.connect({name: "SCRAPE"});
 
-
-// port.onMessage.addListener(msg => {
-//   console.log("I HEARD SOMETHING BACK FROM BACKGROUND!!!");
-//   isSecondDegreeScrapeComplete = msg.second_deg_state;
-// });
-
-let getState:Function = () => {
-  console.log("Get state was called!");
-  // Let's update the second degree scrape right from the start.
-  chrome.runtime.sendMessage(extensionID, {msg: "GET_STATE"}, (res:boolean) => {
-    isSecondDegreeScrapeComplete = res;
-  });
-  return isSecondDegreeScrapeComplete;
-  
-}
 
 let signInSequence:Function = () => {
   if(document.getElementById("login-button")){
@@ -57,35 +40,25 @@ let scrapingSeqence:Function = () => {
 }
 
 
-function secondDegreePromise(url:string) : Promise<string> {
+function secondDegreePromise(url:string) : Promise<any> {
   /// Open up a new tab with the generated URL
-  window.open(url, '_blank');
-  // console.log(url);
-  return new Promise (function callback(resolve, reject) {
-    // Grab the state from the background and update the local variable
-    // chrome.runtime.sendMessage(extensionID, {msg: "GET_STATE"}, (res:boolean) => {
-    //   isSecondDegreeScrapeComplete = res;
-    // });
-    if (getState() === false){ // If the second degree state is still not done
-      console.log('Still waiting for 2nd degree scrape to finish...'+' Its state is '+isSecondDegreeScrapeComplete);
-      // port.onMessage.addListener(msg => {
-      //   isSecondDegreeScrapeComplete = msg.second_deg_state;
-      // });
-      setTimeout(callback, 5000); //    repeat promise after n-seconds until state is true.
-    }else if(getState() === true){ // If the promise is complete
-      // Reset the scrape state (Turns it false) & update the local variable
-      chrome.runtime.sendMessage(extensionID, {msg: "RESET"}, (res:boolean) => {
-        console.log("Updating local variable from background...");
-        isSecondDegreeScrapeComplete = res;
-      });
-      resolve("2nd degree scrape was complete!");
-      // port.onMessage.addListener(msg => {
-      //         isSecondDegreeScrapeComplete = msg.second_deg_state;
-      //       });
-    }else {
-      reject("Oopsie woopsieeee, OooooOOoooo.");
-    }
-  })
+  // window.open(url, '_blank');
+  console.log(url)
+  return new Promise (function callback(resolve:Function, reject:Function) {
+    chrome.storage.local.get(['secondDegreeState'], (response) => {
+      if(chrome.runtime.lastError) {
+        console.error(chrome.runtime.lastError.message);
+        reject("Chrome error");
+      }else if (response.secondDegreeState === false){ // If the second degree state is still not done
+        console.log('Still waiting for 2nd degree scrape to finish...'+' Its state is '+response.secondDegreeState);
+        setTimeout(callback, 5000); //    repeat promise after n-seconds until state is true.
+      }else if(response.secondDegreeState === true){ // If the promise is complete
+        resolve("2nd degree scrape was complete!");
+      }else {
+        reject("Oopsie...");
+      }
+    }) 
+    });
 }
 
 
@@ -93,6 +66,8 @@ function secondDegreePromise(url:string) : Promise<string> {
 
 // Two base cases, 1: it reaches the end of the levels array, 2: it reaches the end of the FOS list.
 let firstDegreeScrape:Function = (levelNum: number, fosNum: number) => {
+  // Reset the scrape state (Turns it false)
+  // chrome.storage.local.set({ secondDegreeState: false });
   if (levelNum < levels.length){ // If not base case #1
     const fosParent:HTMLElement|null = document.getElementById("fos_fl"); // Define the FOS parent element.
     if(fosParent){  // If the fosParent is present. (Will most likely return true... just for extra safety)
@@ -103,11 +78,6 @@ let firstDegreeScrape:Function = (levelNum: number, fosNum: number) => {
         const url:string = `https://utdirect.utexas.edu/apps/registrar/course_schedule/20212/results/?ccyys=${ccyys}&search_type_main=${search_type_main}&fos_fl=${fosValue}&level=${levels[levelNum]}`;
         secondDegreePromise(url)
           .then((res)=>{ // If the second degree scrape promise is resolved
-            
-            // port.postMessage({req: "RESET"});
-            // port.onMessage.addListener(msg => {
-            //   isSecondDegreeScrapeComplete = msg.second_deg_state;
-            // });
             console.log(res+"Now moving along to next URL.");
             firstDegreeScrape(levelNum, fosNum+1); // Generate the next URL and scrape it
           })
@@ -178,17 +148,10 @@ let secondDegreeScrape:Function = () => {
     }else {
       setTimeout(()=>{
         // Let's complete the 2nd degree scrape (Sets true) & update the local variable
-        chrome.runtime.sendMessage(extensionID, {msg: "COMPLETE"}, (res:boolean) => {
-          console.log(res+" was returned from background line 175.");
-          isSecondDegreeScrapeComplete = res;
-        });
-        // port.postMessage({req: "COMPLETE"});
-        // port.onMessage.addListener(msg => {
-        //   isSecondDegreeScrapeComplete = msg.second_deg_state;
-        // });
+        chrome.storage.local.set({ secondDegreeState: true });
         //close the tab
         window.close();
-      }, 5000)
+      }, 1000)
     }
   } 
 }
